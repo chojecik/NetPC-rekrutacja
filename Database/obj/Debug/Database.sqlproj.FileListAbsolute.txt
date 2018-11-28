@@ -1,0 +1,5 @@
+D:\studia\C#\Database\Database\bin\Debug\Database.dacpac
+D:\studia\C#\Database\Database\bin\Debug\Database.dll
+D:\studia\C#\Database\Database\bin\Debug\Database.pdb
+D:\studia\C#\Database\Database\obj\Debug\Database.dll
+D:\studia\C#\Database\Database\obj\Debug\Database.pdb

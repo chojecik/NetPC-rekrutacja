@@ -1,0 +1,96 @@
+﻿@model ContactsApp.Models.Contact
+
+<div class="nav navbar-nav navbar-right" style="font-size:20px;">
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            @ContactsApp.Controllers.HomeController.LoggedEmail
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li>@Html.ActionLink("Log out", "Logout", "Home")</li>
+        </ul>
+    </li>
+</div>
+
+<h2>Add contact</h2>
+
+@using (Html.BeginForm("Create", "Contact", FormMethod.Post))
+{
+
+    <p>First Name: @Html.TextBoxFor(model => model.FirstName)</p>
+    <p>Last Name: @Html.TextBoxFor(model => model.LastName)</p>
+    <p>Email: @Html.TextBoxFor(model => model.Email)</p>
+
+    if (ViewBag.email == "incorrect")
+    {
+        <div id="textDiv"></div>
+        <script type="text/javascript">
+            var div = document.getElementById("textDiv");
+            div.textContent = "Email already used";
+            div.style.fontSize = "14px";
+            div.style.color = "red";
+            var text = div.textContent;
+        </script>
+    }
+
+    <p>Password: @Html.TextBoxFor(model => model.Password)</p>
+
+    if (ViewBag.password == "incorrect")
+    {
+        <div id="textDiv"></div>
+        <script type="text/javascript">
+                            var div = document.getElementById("textDiv");
+                            div.textContent = "The password is too weak. Make sure the password consists of minimum 8 characters, has at least one capital letter and one digit";
+                            div.style.fontSize = "14px";
+                            div.style.color = "red";
+                            var text = div.textContent;
+        </script>
+    }
+
+    <p>Category: <input type="radio" name="radioButton" id="oth" value="Other" onclick="setOther()" /><label>Other</label><label>   </label><input type="radio" name="radioButton" id="bus" value="Business" onclick="setBusiness()" /><label>Business</label></p>
+
+     
+
+
+    <p id="businessChosen">
+        @Html.DropDownList("ddlSelectValue", new[]
+        {
+            new SelectListItem() {Text= "Boss" },
+            new SelectListItem() {Text= "Client" },
+            new SelectListItem() {Text= "Coworker" }
+        }
+        )
+    </p>
+
+
+
+    <p id="otherChosen">@Html.TextBox("tbSelectValue")</p>               //wyswietlanie textboxa dla kategorii other
+
+
+    <p>Phone Number: @Html.TextBoxFor(model => model.PhoneNumber)</p>
+    <p>Date of Birth: @Html.TextBoxFor(model => model.DateOfBirth)</p>
+
+    <input type="submit" value="Create" class="btn btn-default" />
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ManageContacts")
+</div>
+
+
+<script>
+
+    function setOther()             //wyświetlanie formularza dla kategorii Other
+    {
+        document.getElementById('businessChosen').style.display = 'none';
+        document.getElementById('otherChosen').style.display = 'inline';
+    }
+
+    function setBusiness()         //wyświetlanie formularza dla kategorii Business
+    {
+        document.getElementById('otherChosen').style.display = 'none';
+        document.getElementById('businessChosen').style.display = 'inline';
+    }
+
+</script>

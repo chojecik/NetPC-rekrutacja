@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ContactsApp.Models.Contact>
+
+
+<h2>Contacts</h2>
+
+
+
+<br />
+<br />
+<br />
+
+
+<table class="table">
+    <tr>
+        <th>
+            First Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Password
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Subcategory
+        </th>
+        <th>
+            Phone Number
+        </th>
+        <th>
+            Date Of Birth
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category1.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subcategory1.SubcategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+        </tr>
+    }
+
+</table>
+

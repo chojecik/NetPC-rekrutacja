@@ -1,0 +1,75 @@
+﻿@model ContactsApp.Models.UserModel
+@{
+    ViewBag.Title = "Contact List";
+}
+
+<div class="jumbotron">
+
+
+    <h1>CONTACT LIST</h1>
+
+    <p class="lead">Welcome at this contact list page</p>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Log In</h2>
+            <section id="loginForm">
+                @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                       
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-12">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Log in" class="btn btn-default" />
+
+                        </div>
+                    </div>
+
+                    if (ViewBag.status == "error")
+                    {
+                        <div id="textDiv"></div>
+                        <script type="text/javascript">
+                            var div = document.getElementById("textDiv");
+                            div.textContent = "Wrong email address or password - try again";
+                            div.style.fontSize = "14px";
+                            div.style.color = "red";
+                            var text = div.textContent;
+                        </script>
+                    }
+                }
+            </section>
+        </div>
+
+
+
+        <div class="col-md-4">
+            <h2>Or</h2>
+        </div>
+
+
+
+
+        <div class="col-md-4">
+            <h2>See all the contacts without logging in</h2>
+            <p>
+                <li>@Html.ActionLink("See contacts here", "SeeContacts", "Contact")</li>
+            </p>
+        </div>
+    </div>
